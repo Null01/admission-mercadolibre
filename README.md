@@ -65,6 +65,8 @@ git push heroku main
 
 # Pruebas Unitarias
 
+![alt text](./docs/test/test_coverage.png "Coverage")
+
 # Pruebas usuario
 
 Para cada nivel se adjunta una prueba gráfica o datos de entrada y salida, que comprueban el objetivo de cada item de la
