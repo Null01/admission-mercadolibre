@@ -7,14 +7,14 @@ misma a los diferentes satellites de la alianza.
 
 Para ello inicialmente se posicionan los satellites en un plano cartesiano en 2D y se ubica temporalmente la posible
 ubicación de la nave aliada a partir de las distancias que nos proporcionan entre un satellite y el emisor.
-![alt text](./docs/context/context_1.PNG "Initial State")
-![alt text](./docs/context/context_2.PNG "A")
+![alt text](./docs/context/context_1.png "Initial State")
+![alt text](./docs/context/context_2.png "A")
 Luego de esto, se traza la distancia como un radio de un círculo esto cada satellite que recibió una distancia del
 emisor. A partir de este se traza una circunferencia con `radio = distancia` sobre cada satellite, cuando esta
 circunferencia se intercepte con las circunferencias de los demas satellites, los puntos de intercepción generados
 entres circunferencias indicaran las posibles coordenadas en donde se encuentra la nave.
-![alt text](./docs/context/context_3.PNG "B")
-![alt text](./docs/context/context_4.PNG "C")
+![alt text](./docs/context/context_3.png "B")
+![alt text](./docs/context/context_4.png "C")
 
 Nota: Datos del problema.
 
@@ -62,7 +62,7 @@ git push heroku main
 
 4. Comprobar si la aplicacion quedo operativos ingresando al
    enlace `https://admission-mercado-libre.herokuapp.com/swagger-ui.html`
-   ![alt text](./docs/test/swagger_remote.PNG "Swagger UI - API Rest")
+   ![alt text](./docs/test/swagger_remote.png "Swagger UI - API Rest")
 
 # Pruebas Unitarias
 
@@ -76,7 +76,7 @@ las pruebas de forma más dinámica. `https://www.getpostman.com/collections/616
 
 ### Nivel 1
 
-![alt text](./docs/test/case_1.PNG "N1")
+![alt text](./docs/test/case_1.png "N1")
 
 ### Nivel 2
 
@@ -126,7 +126,7 @@ por cada satellite con cierta cantidad de errores.
 }
 ```
 
-![alt text](./docs/test/case_2_response_ok.PNG "N1 - Ok")
+![alt text](./docs/test/case_2_response_ok.png "N1 - Ok")
 
 - Escenario Fallido.
 
@@ -170,4 +170,4 @@ por cada satellite con cierta cantidad de errores.
 }
 ```
 
-![alt text](./docs/test/case_2_response_error.PNG "N1 - Error")
+![alt text](./docs/test/case_2_response_error.png "N1 - Error")
