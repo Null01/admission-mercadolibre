@@ -24,7 +24,6 @@ Satelite | Kenobi | (-500,-200)
 Satelite | Skywalker | (100,-100)
 Satelite | Sato | (500,100)
 
-
 # Documentación
 
 # Instalación
@@ -72,7 +71,8 @@ Para cada nivel se adjunta una prueba gráfica o datos de entrada y salida, que 
 prueba de admisión.
 
 Nota: Si tiene instalada la aplicación POSTMAN abrir la siguiente collection de requests (Restfull) para llevar a cabo
-las pruebas de forma más dinámica. `https://www.getpostman.com/collections/616c17a239c84a62cdb9`
+las pruebas de forma más dinámica. `https://www.getpostman.com/collections/616c17a239c84a62cdb9` o en su defecto
+ejecutar los request desde `https://admission-mercado-libre.herokuapp.com/swagger-ui.html#`
 
 ### Nivel 1
 

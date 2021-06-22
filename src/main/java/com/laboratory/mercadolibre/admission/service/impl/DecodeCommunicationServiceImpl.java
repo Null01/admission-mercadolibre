@@ -43,8 +43,11 @@ public class DecodeCommunicationServiceImpl implements IDecodeCommunicationServi
             int index2 = 0;
             while (s2[index2].isEmpty()) ++index2;
 
+            int index1 = 0;
+            while (s1[index1].compareToIgnoreCase(s2[index2]) != 0) ++index1;
+
             for (int i = index2; i < s2.length; i++)
-                newS2[i] = s2[i];
+                newS2[index1++] = s2[i];
             return joinWords(s1, newS2);
         }
     }
