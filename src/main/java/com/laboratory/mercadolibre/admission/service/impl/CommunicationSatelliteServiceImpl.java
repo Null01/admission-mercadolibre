@@ -73,9 +73,13 @@ public class CommunicationSatelliteServiceImpl implements ICommunicationSatellit
         final List<Satellite> satellitesData = satelliteRepository.getCurrentSatellites();
         for (Satellite satellite : satellites) {
             Satellite s = satellitesData.stream().filter(f -> f.getName().compareToIgnoreCase(satellite.getName()) == 0)
-                    .findFirst().orElseThrow(BusinessException.SatelliteWithoutCoordinatesException::new);
+                    .findFirst().orElseThrow(BusinessException.SatelliteWithoutDataException::new);
             satellite.setPositionX(s.getPositionX());
             satellite.setPositionY(s.getPositionY());
         }
+
+        boolean isWithoutData = satellites.stream().allMatch(f -> f.getDistance() == null || f.getMessages() == null);
+        if (isWithoutData)
+            throw new BusinessException.SatelliteWithoutDataException();
     }
 }

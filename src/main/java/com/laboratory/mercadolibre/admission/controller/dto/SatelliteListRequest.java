@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -19,7 +20,9 @@ public class SatelliteListRequest {
     @NoArgsConstructor
     public static class SatelliteRequest {
         private String name;
+        @NotNull
         private Double distance;
+        @NotNull
         private String[] message;
     }
 

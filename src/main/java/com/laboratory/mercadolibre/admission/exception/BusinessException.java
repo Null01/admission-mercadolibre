@@ -6,9 +6,9 @@ public class BusinessException extends Exception {
         super(message);
     }
 
-    public static class SatelliteWithoutCoordinatesException extends BusinessException {
-        public SatelliteWithoutCoordinatesException() {
-            super("Satellite not have coordinates");
+    public static class SatelliteWithoutDataException extends BusinessException {
+        public SatelliteWithoutDataException() {
+            super("Satellites not have coordinates, distance or message.");
         }
     }
 

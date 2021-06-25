@@ -30,7 +30,7 @@ class CommunicationSatelliteServiceImplTest extends TestUtilities {
 
     @Test
     void getLocationSatelliteNotHaveCoordinatesFailed() {
-        Assertions.assertThrows(BusinessException.SatelliteWithoutCoordinatesException.class, () -> communicationSatelliteService.getLocation(this.getSatelliteRequestSuccess()));
+        Assertions.assertThrows(BusinessException.SatelliteWithoutDataException.class, () -> communicationSatelliteService.getLocation(this.getSatelliteRequestSuccess()));
     }
 
     @Test

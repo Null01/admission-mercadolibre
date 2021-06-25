@@ -84,11 +84,16 @@ ejecutar los request desde `https://admission-mercado-libre.herokuapp.com/swagge
 
 ### Nivel 2
 
+A continuación se describe 1 servicio, el cual almacena datos de los satellites y halla la ubicación de la nave a través
+del método POST.
+
 Los satellites deben estar posicionados de tal forma que puedan triangulan la señal enviada desde la nave emisora. Este
 escenario recibe la distancia que existe entre el emisor y cada unos de los satellites, adicional el mensaje es recibido
 por cada satellite con cierta cantidad de errores.
 
-```json5
+```shell
+POST
+https://admission-mercado-libre.herokuapp.com/topsecret
 ```
 
 - Escenario Exitoso.
@@ -133,7 +138,7 @@ por cada satellite con cierta cantidad de errores.
 }
 ```
 
-![alt text](./docs/test/case_2_response_ok.png "N1 - Ok")
+![alt text](./docs/test/case_2_response_ok.png "N2 - Ok")
 
 - Escenario Fallido.
 
@@ -177,10 +182,42 @@ por cada satellite con cierta cantidad de errores.
 }
 ```
 
-![alt text](./docs/test/case_2_response_error.png "N1 - Error")
+![alt text](./docs/test/case_2_response_error.png "N2 - Error")
 
 ### Nivel 3
 
+A continuación se describen 2 servicios, uno para almacenar datos de los satellites a través del método POST y luego un
+segundo servicio para hallar la ubicación de la nave a través del método GET,
+
 Los satellites deben estar posicionados de tal forma que puedan triangulan la señal enviada desde la nave emisora. Este
 escenario recibe la distancia que existe entre el emisor y un satellite, adicional el mensaje que es recibido por el
-satellite, teniendo en cuenta que el nombre del satellite (parameter del servicio) debe existir.
+satellite, teniendo en cuenta que el nombre del satellite (path-parameter satellite_name del servicio) debe existir.
+
+```shell
+POST
+https://admission-mercado-libre.herokuapp.com/topsecret_split/{satellite_name}
+```
+
+- Escenario Exitoso.
+
+```json5
+{
+   "distance": 848.528,
+   "message": [
+      "este",
+      "",
+      "",
+      "mensaje",
+      ""
+   ]
+}
+```
+
+
+![alt text](./docs/test/case_3_a_response.png "N3 - Ok")
+
+```shell
+GET
+https://admission-mercado-libre.herokuapp.com/topsecret_split
+```
+
