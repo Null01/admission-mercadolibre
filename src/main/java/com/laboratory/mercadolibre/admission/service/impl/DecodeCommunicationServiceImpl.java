@@ -12,13 +12,16 @@ public class DecodeCommunicationServiceImpl implements IDecodeCommunicationServi
     @Override
     public String decodeMessage(List<String[]> messages) {
         messages = messages.stream().sorted(this::countWords).collect(Collectors.toList());
-        for (int i = 0; i < messages.size(); i++) {
-            for (int j = i + 1; j < messages.size(); j++) {
-                boolean match = joinWords(messages.get(i), messages.get(j));
-                if (match) {
-                    messages.remove(j);
-                    j = i;
-                }
+        for (var i = 0; i < messages.size(); i++) {
+            final String[] mainMessage = messages.get(i);
+            var j = i + 1;
+            while (j < messages.size()) {
+                final String[] currentMessage = messages.get(j);
+                boolean match = joinWords(mainMessage, currentMessage);
+                if (match)
+                    messages.removeIf(m -> Arrays.compare(m, currentMessage) == 0);
+                else
+                    j++;
             }
         }
         return String.join(" ", messages.get(0));
@@ -26,30 +29,34 @@ public class DecodeCommunicationServiceImpl implements IDecodeCommunicationServi
 
     private boolean joinWords(String[] s1, String[] s2) {
         if (s1.length == s2.length) {
-            for (int i = 0; i < s1.length; i++) {
-                if (s2[i].isEmpty())
-                    continue;
-                if (!s1[i].isEmpty() && s1[i].compareToIgnoreCase(s2[i]) != 0)
-                    return false;
-            }
-            for (int i = 0; i < s1.length; i++)
-                if (s1[i].isEmpty())
-                    s1[i] = s2[i];
-            return true;
+            return joinWordsEqualsWords(s1, s2);
         } else {
-            String[] newS2 = new String[s1.length];
+            var newS2 = new String[s1.length];
             Arrays.fill(newS2, "");
 
-            int index2 = 0;
+            var index2 = 0;
             while (s2[index2].isEmpty()) ++index2;
 
-            int index1 = 0;
+            var index1 = 0;
             while (s1[index1].compareToIgnoreCase(s2[index2]) != 0) ++index1;
 
-            for (int i = index2; i < s2.length; i++)
+            for (var i = index2; i < s2.length; i++)
                 newS2[index1++] = s2[i];
             return joinWords(s1, newS2);
         }
+    }
+
+    private boolean joinWordsEqualsWords(String[] s1, String[] s2) {
+        for (var i = 0; i < s1.length; i++) {
+            if (s2[i].isEmpty())
+                continue;
+            if (!s1[i].isEmpty() && s1[i].compareToIgnoreCase(s2[i]) != 0)
+                return false;
+        }
+        for (var i = 0; i < s1.length; i++)
+            if (s1[i].isEmpty())
+                s1[i] = s2[i];
+        return true;
     }
 
     private int countWords(String[] s1, String[] s2) {

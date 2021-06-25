@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
-public class SatelliteControllerTest extends TestUtilities {
+class SatelliteControllerTest extends TestUtilities {
 
     @Autowired
     private MockMvc mockMvc;

@@ -63,9 +63,11 @@ git push heroku main
    enlace `https://admission-mercado-libre.herokuapp.com/swagger-ui.html`
    ![alt text](./docs/test/swagger_remote.png "Swagger UI - API Rest")
 
-# Pruebas Unitarias
+# Pruebas Unitarias - Calidad Codigo
 
 ![alt text](./docs/test/test_coverage.png "Coverage")
+
+![alt text](./docs/test/test_sonarqube.png "Sonarqube")
 
 # Pruebas usuario
 
@@ -82,9 +84,12 @@ ejecutar los request desde `https://admission-mercado-libre.herokuapp.com/swagge
 
 ### Nivel 2
 
-Los satellites deben estar posicionados de tal forma que puedan triangulan la señal envianda desde la nave emisora. Este
+Los satellites deben estar posicionados de tal forma que puedan triangulan la señal enviada desde la nave emisora. Este
 escenario recibe la distancia que existe entre el emisor y cada unos de los satellites, adicional el mensaje es recibido
 por cada satellite con cierta cantidad de errores.
+
+```json5
+```
 
 - Escenario Exitoso.
 
@@ -173,3 +178,9 @@ por cada satellite con cierta cantidad de errores.
 ```
 
 ![alt text](./docs/test/case_2_response_error.png "N1 - Error")
+
+### Nivel 3
+
+Los satellites deben estar posicionados de tal forma que puedan triangulan la señal enviada desde la nave emisora. Este
+escenario recibe la distancia que existe entre el emisor y un satellite, adicional el mensaje que es recibido por el
+satellite, teniendo en cuenta que el nombre del satellite (parameter del servicio) debe existir.

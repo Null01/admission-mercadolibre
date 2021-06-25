@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Map;
 
 @RestControllerAdvice
 @Slf4j
@@ -21,11 +20,11 @@ public class RestControllerHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
         log.error("handleAllExceptions - exception:" + exception);
-        Map<String, Object> responseMap = new HashMap<String, Object>();
-        responseMap.put("status", HttpStatus.NOT_FOUND);
-        responseMap.put("error", exception.getMessage());
-        responseMap.put("timestamp", LocalDateTime.now());
-        return new ResponseEntity<>(responseMap, HttpStatus.NOT_FOUND);
+        var response = new HashMap<>();
+        response.put("status", HttpStatus.NOT_FOUND);
+        response.put("error", exception.getMessage());
+        response.put("timestamp", LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
 }

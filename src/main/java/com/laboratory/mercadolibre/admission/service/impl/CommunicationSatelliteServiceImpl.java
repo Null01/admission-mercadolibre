@@ -4,11 +4,12 @@ import com.laboratory.mercadolibre.admission.business.geometry.ICircleSystem;
 import com.laboratory.mercadolibre.admission.business.geometry.shape.Circle;
 import com.laboratory.mercadolibre.admission.business.geometry.shape.Point;
 import com.laboratory.mercadolibre.admission.exception.BusinessException;
-import com.laboratory.mercadolibre.admission.model.Satellite;
-import com.laboratory.mercadolibre.admission.model.Spacecraft;
+import com.laboratory.mercadolibre.admission.exception.StorageException;
+import com.laboratory.mercadolibre.admission.model.entities.Satellite;
+import com.laboratory.mercadolibre.admission.model.entities.Spacecraft;
+import com.laboratory.mercadolibre.admission.model.repository.SatelliteRepository;
 import com.laboratory.mercadolibre.admission.service.ICommunicationSatelliteService;
 import com.laboratory.mercadolibre.admission.service.IDecodeCommunicationService;
-import com.laboratory.mercadolibre.admission.service.properties.InitializeSystemProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public class CommunicationSatelliteServiceImpl implements ICommunicationSatelliteService {
 
     @Autowired
-    private InitializeSystemProperties initializeSystemProperties;
+    private SatelliteRepository satelliteRepository;
 
     @Autowired
     private ICircleSystem iCircleSystem;
@@ -41,7 +42,7 @@ public class CommunicationSatelliteServiceImpl implements ICommunicationSatellit
             Spacecraft spacecraft = null;
             List<Point> points = iCircleSystem.findPointIntersection(circles)
                     .stream().sorted(Comparator.comparing(Point::getX)).collect(Collectors.toList());
-            for (int i = 1; i < points.size() && points.size() > 1; i++) {
+            for (var i = 1; i < points.size() && points.size() > 1; i++) {
                 log.info("position-between: {} - {}", points.get(i - 1), points.get(i));
                 if (points.get(i).getX() - points.get(i - 1).getX() <= 1.0 && points.get(i).getY() - points.get(i - 1).getY() <= 1.0)
                     spacecraft = new Spacecraft(points.get(i).getX(), points.get(i).getY());
@@ -57,9 +58,19 @@ public class CommunicationSatelliteServiceImpl implements ICommunicationSatellit
         return iDecodeCommunicationService.decodeMessage(messages);
     }
 
-    private void validateData(List<Satellite> satellites) throws BusinessException {
-        final List<Satellite> satellitesData = initializeSystemProperties.getSatellite();
 
+    @Override
+    public void addSatellite(Satellite satellite) throws StorageException {
+        satelliteRepository.addSatellite(satellite);
+    }
+
+    @Override
+    public List<Satellite> getSatellite() {
+        return satelliteRepository.getCurrentSatellites();
+    }
+
+    private void validateData(List<Satellite> satellites) throws BusinessException {
+        final List<Satellite> satellitesData = satelliteRepository.getCurrentSatellites();
         for (Satellite satellite : satellites) {
             Satellite s = satellitesData.stream().filter(f -> f.getName().compareToIgnoreCase(satellite.getName()) == 0)
                     .findFirst().orElseThrow(BusinessException.SatelliteWithoutCoordinatesException::new);

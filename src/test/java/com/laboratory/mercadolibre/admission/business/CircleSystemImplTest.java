@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class CircleSystemImplTest extends TestUtilities {
+class CircleSystemImplTest extends TestUtilities {
 
     @InjectMocks
     private CircleSystemImpl iCircleSystem;

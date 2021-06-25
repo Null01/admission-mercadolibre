@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.laboratory.mercadolibre.admission.business.geometry.shape.Circle;
 import com.laboratory.mercadolibre.admission.business.geometry.shape.Point;
 import com.laboratory.mercadolibre.admission.controller.dto.SatelliteListRequest;
-import com.laboratory.mercadolibre.admission.model.Satellite;
-import com.laboratory.mercadolibre.admission.model.Spacecraft;
+import com.laboratory.mercadolibre.admission.model.entities.Satellite;
+import com.laboratory.mercadolibre.admission.model.entities.Spacecraft;
 
 import java.util.Arrays;
 import java.util.List;

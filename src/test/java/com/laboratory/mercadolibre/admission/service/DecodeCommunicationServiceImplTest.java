@@ -1,6 +1,6 @@
 package com.laboratory.mercadolibre.admission.service;
 
-import com.laboratory.mercadolibre.admission.model.Satellite;
+import com.laboratory.mercadolibre.admission.model.entities.Satellite;
 import com.laboratory.mercadolibre.admission.service.impl.DecodeCommunicationServiceImpl;
 import com.laboratory.mercadolibre.admission.utilis.TestUtilities;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ExtendWith(MockitoExtension.class)
-public class DecodeCommunicationServiceImplTest extends TestUtilities {
+class DecodeCommunicationServiceImplTest extends TestUtilities {
 
     @InjectMocks
     private DecodeCommunicationServiceImpl decodeCommunicationService;

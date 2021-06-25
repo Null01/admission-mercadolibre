@@ -1,8 +1,7 @@
-package com.laboratory.mercadolibre.admission.model;
+package com.laboratory.mercadolibre.admission.model.entities;
 
 import com.laboratory.mercadolibre.admission.controller.dto.SatelliteListRequest;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

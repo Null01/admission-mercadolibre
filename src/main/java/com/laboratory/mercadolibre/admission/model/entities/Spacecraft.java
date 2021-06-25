@@ -1,4 +1,4 @@
-package com.laboratory.mercadolibre.admission.model;
+package com.laboratory.mercadolibre.admission.model.entities;
 
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
