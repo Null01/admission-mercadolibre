@@ -26,6 +26,8 @@ Satelite | Sato | (500,100)
 
 # Documentación
 
+![alt text](./docs/technical/basic_diagram.png "N3 A - Ok")
+
 # Instalación
 
 ### Requisitos:
@@ -213,11 +215,17 @@ https://admission-mercado-libre.herokuapp.com/topsecret_split/{satellite_name}
 }
 ```
 
-
-![alt text](./docs/test/case_3_a_response.png "N3 - Ok")
+![alt text](./docs/test/case_3_a_response.png "N3 A - Ok")
 
 ```shell
 GET
 https://admission-mercado-libre.herokuapp.com/topsecret_split
 ```
 
+- Escenario Exitoso.
+
+![alt text](./docs/test/case_3_b_response_ok.png "N3 B - Ok")
+
+- Escenario Fallido.
+
+![alt text](./docs/test/case_3_b_response_error.png "N3 B - Failed")
